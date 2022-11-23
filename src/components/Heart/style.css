@@ -1,0 +1,29 @@
+.heart {
+  display: flex;
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.r {
+  right: 0;
+}
+
+.red-square {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  width: 50px;
+  height: 50px;
+  rotate: 45deg;
+  background-color: red;
+}
+
+.red-circle {
+  position: absolute;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: red;
+}
