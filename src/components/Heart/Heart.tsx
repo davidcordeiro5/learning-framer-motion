@@ -6,9 +6,9 @@ const Heart = () => {
     <div>
       <motion.div
         className="heart"
-        animate={{
-          scale: [1, 1.5, 1],
-        }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, scale: [1, 1.5, 1] }}
+        exit={{ opacity: 1 }}
         transition={{ duration: 1.5 }}
       >
         <div className="red-circle l" />
