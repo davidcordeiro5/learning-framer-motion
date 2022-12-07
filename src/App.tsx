@@ -1,20 +1,29 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-// import { Route } from "react-router";
-import "./App.css";
-import Heart from "./components/Heart";
-import Squares from "./components/Squares";
+import { Routes, Route, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+import "./styles/App.css";
+import Navigation from "./components/Navigation";
+import Home from "./pages/Home";
+import SquareAnimations from "./pages/SquareAnimations";
+
+const links = [
+  { slug: "/", name: "Home" },
+  { slug: "/squares", name: "Squares land" },
+  // { slug: "/carousel", name: "carousel" },
+];
 
 function App() {
+  const location = useLocation();
+
   return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<>HOME</>} />
-          <Route path="square" element={<Squares />} />
-          <Route path="heart" element={<Heart />} />
+    <div className="app">
+      <Navigation links={links} />
+      <AnimatePresence initial={false} mode="wait">
+        <Routes location={location} key={location.key}>
+          <Route path="/" element={<Home />} />
+          <Route path="/squares" element={<SquareAnimations />} />
         </Routes>
-      </div>
-    </Router>
+      </AnimatePresence>
+    </div>
   );
 }
 
