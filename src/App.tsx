@@ -4,11 +4,13 @@ import "./styles/App.css";
 import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import SquareAnimations from "./pages/SquareAnimations";
+import Carousel from "./pages/Carousel";
 
 const links = [
   { slug: "/", name: "Home" },
   { slug: "/squares", name: "Squares land" },
-  // { slug: "/carousel", name: "carousel" },
+  { slug: "/carousel", name: "Carousel" },
+  { slug: "/gallery", name: "Gallery" },
 ];
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
         <Routes location={location} key={location.key}>
           <Route path="/" element={<Home />} />
           <Route path="/squares" element={<SquareAnimations />} />
+          <Route path="/carousel" element={<Carousel />} />
         </Routes>
       </AnimatePresence>
     </div>
