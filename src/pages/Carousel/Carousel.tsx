@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { SPACE_IMAGES } from "~/assets/pictures/space";
+
+import Test from "~/assets/pictures/space/space1.jpg";
 
 const images = [
   "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2832&q=80",
@@ -75,6 +78,8 @@ const Carousel = () => {
 
   console.log("page :>> ", page);
 
+  console.log("first", SPACE_IMAGES.space1);
+
   return (
     <Container>
       <AnimatePresence initial={false} custom={direction} mode="popLayout">
@@ -104,13 +109,13 @@ const Carousel = () => {
             }
           }}
         />
-        <div className="next" onClick={() => paginate(1)}>
-          ➡️
-        </div>
-        <div className="prev" onClick={() => paginate(-1)}>
-          ⬅️
-        </div>
       </AnimatePresence>
+      <div className="next" onClick={() => paginate(1)}>
+        ➡️
+      </div>
+      <div className="prev" onClick={() => paginate(-1)}>
+        ⬅️
+      </div>
     </Container>
   );
 };

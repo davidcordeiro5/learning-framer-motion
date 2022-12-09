@@ -5,6 +5,7 @@ import Navigation from "./components/Navigation";
 import Home from "./pages/Home";
 import SquareAnimations from "./pages/SquareAnimations";
 import Carousel from "./pages/Carousel";
+import Gallery from "./pages/Gallery";
 
 const links = [
   { slug: "/", name: "Home" },
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/squares" element={<SquareAnimations />} />
           <Route path="/carousel" element={<Carousel />} />
+          <Route path="/gallery" element={<Gallery />} />
         </Routes>
       </AnimatePresence>
     </div>
