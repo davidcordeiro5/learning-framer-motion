@@ -1,33 +1,14 @@
 import { AnimatePresence, useMotionValue, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import styled from "styled-components";
-import Button from "~/components/Button";
-import Modal from "./components/Modal";
 import Snippet from "./components/Snippet";
+import SnippetVariants from "./components/SnippetVariants";
+import SnippetWithModal from "./components/SnippetWithModal";
 
 import { PageContainer, Square } from "./SquareAnimations.styled";
 
 const SquareAnimations = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
   const constraintsRef = useRef(null);
-
-  const cVariants = {
-    visible: (i: number) => ({
-      y: 0,
-      opacity: 1,
-      transition: {
-        delay: i * 0.5,
-        duration: 0.7,
-      },
-    }),
-    hidden: {
-      y: -200,
-      opacity: 0,
-      transition: {
-        duration: 1,
-      },
-    },
-  };
 
   const x = useMotionValue(200);
   const y = useMotionValue(200);
@@ -36,8 +17,6 @@ const SquareAnimations = () => {
   const rotateY = useTransform(x, [0, 400], [-45, 45]);
 
   const handleMouse = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    // x.set(e.pageX);
-    // y.set(e.pageY);
     const rect = e.currentTarget.getBoundingClientRect();
 
     x.set(e.clientX - rect.left);
@@ -56,21 +35,7 @@ const SquareAnimations = () => {
         duration: 0.1,
       }}
     >
-      <Snippet title="custom variants">
-        <AnimatePresence>
-          <div style={{ display: "flex" }}>
-            {[...Array(3)].map((_, i) => (
-              <Square
-                key={i}
-                custom={i}
-                variants={cVariants}
-                animate="visible"
-                initial="hidden"
-              />
-            ))}
-          </div>
-        </AnimatePresence>
-      </Snippet>
+      <SnippetVariants />
       <Snippet title="Hover the square to see rotate n scale">
         <Square
           whileTap={{
@@ -100,18 +65,7 @@ const SquareAnimations = () => {
           />
         </AnimatePresence>
       </Snippet>
-
-      <Snippet title="initial and exit animation">
-        <Button onClick={() => setIsOpen((c) => (c = !c))}>
-          {!isOpen ? "Display square" : "Hidden square"}
-        </Button>
-
-        <Modal isOpen={isOpen} close={() => setIsOpen(false)}>
-          <h2 style={{ textAlign: "center", color: "var(--theme-bg)" }}>
-            Hello
-          </h2>
-        </Modal>
-      </Snippet>
+      <SnippetWithModal />
 
       <Snippet title="drag me">
         <DargConstraints ref={constraintsRef}>
@@ -132,6 +86,10 @@ const SquareAnimations = () => {
             perspective: 400,
           }}
           onMouseMove={handleMouse}
+          onMouseLeave={() => {
+            x.set(200);
+            y.set(200);
+          }}
         >
           <Square
             style={{
